@@ -1,11 +1,13 @@
 FROM node:8
 
-WORKDIR /usr/src/app
+CMD mkdir /app && chown -R node:node /app
 
-COPY package*.json ./
+WORKDIR /app
 
-RUN npm install
+COPY package*.json ./app
+
+CMD sudo npm install
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["npm","start"]

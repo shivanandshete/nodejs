@@ -3,14 +3,18 @@ version: '3'
 services:
   db:
     build: ./db
+    container_name: db
     environment:
       MYSQL_DATABASE: stormlight
       MYSQL_ROOT_PASSWORD: supersecret
       MYSQL_USER: mysql
       MYSQL_PASSWORD: supersecret
       DATABASE_HOST: db
+    volumes:
+      - /root/nodejs/mynetwork:/var/lib/mysql
   web:
     build: ./web
+    container: web
     environment:
       DATABASE_HOST: db
       MYSQL_PORT: 3306
@@ -22,3 +26,11 @@ services:
     depends_on:
       - db
     restart: on-failure 
+
+
+volumes:
+    nodejs_volume
+
+networks:
+    mynetwork
+      driver: "bridge"
