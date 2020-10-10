@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: supersecret
       DATABASE_HOST: db
     volumes:
-      - /root/nodejs/mynetwork:/var/lib/mysql
+      - /root/nodejs/nodejs_volume:/var/lib/mysql
   web:
     build: ./web
     container: web
